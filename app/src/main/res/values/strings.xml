@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">kotlin test</string>
+    <string name="get">get</string>
+    <string name="to">To</string>
+    <string name="message">Message</string>
+    <string name="send">send</string>
+    <string name="life_left">Life Left %d</string>
+    <string name="incorrect_guess">Incorrect Guess: %s</string>
+    <array name="courses">
+        <item>Android</item>
+        <item>IOS</item>
+        <item>Android</item>
+        <item>Android</item>
+    </array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
