@@ -1,0 +1,53 @@
+name: Android CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the workflow on
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'  # You can choose the Java version you need
+
+    - name: Set up Android Emulator
+      uses: actions/setup-android@v2
+      with:
+        sdk: 'platform-tools,build-tools,android-30,extra-android-m2repository,extra-google-m2repository'
+        emulator-version: '30'
+        arch: x86
+        api-level: 30
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Run Tests
+      run: ./gradlew test
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: app/build/reports
+
+  deploy:
+    name: Deploy to Play Store
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download test results
+      uses: actions/download-artifact@v2
+      with:
+        name: test-results
+        path: app/build/reports
+
+    # Add steps to deploy to the Play Store or other deployment targets as needed
