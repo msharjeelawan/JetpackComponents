@@ -20,10 +20,10 @@ jobs:
     - name: Set up Android Emulator
       uses: actions/setup-android@v2
       with:
-        sdk: 'platform-tools,build-tools,android-30,extra-android-m2repository,extra-google-m2repository'
+        SDK: 'platform-tools,build-tools,android-30,extra-android-m2repository,extra-google-m2repository'
         emulator-version: '30'
         arch: x86
-        api-level: 30
+        API-level: 30
 
     - name: Build with Gradle
       run: ./gradlew build
