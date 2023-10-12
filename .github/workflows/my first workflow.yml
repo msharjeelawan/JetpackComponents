@@ -1,0 +1,38 @@
+name: My Workflow
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+       -name: checking code
+        uses: actions/checkout@v3
+      
+       -name: setup environment
+        uses: actions/setup-java
+        with:
+          java-version: '17'
+      
+       -name: change permission
+        run: chmod +x ./gradlew
+ 
+       -name: build project
+        run: ./gradlew build
+
+       -name: build debug apk
+        run: ./gradlew assembleDebug
+
+       -name: deploy apk
+        uses: actions/upload-artifact@v3
+        with:
+          name: my debug apk
+          path: app
+
+
+
+
+
+
+
+
+ 
